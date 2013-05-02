@@ -13,18 +13,17 @@ import java.util.zip.GZIPInputStream;
 
 import com.espn.api.sports.Sport;
 import com.espn.api.sports.Sports;
+import com.espn.api.sports.SportsAPI;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 
 public class SportsTest {
    
-   private static String requestUrl = "http://api.espn.com/v1/sports?apikey=_____";
-   
    public static void main(String[] args) throws JsonSyntaxException, IOException {
-      GsonBuilder builder = new GsonBuilder();
-      Gson gson = builder.create();
-      Sports root = gson.fromJson(makeRequest(), Sports.class);
+      SportsAPI sportsApi = new SportsAPI();
+      Sports root = sportsApi.getAPIData();
+      
       System.out.println("links.api.news=" + root.getLinks().getApi().getNews().getHref());
       System.out.println("links.api.headlines=" + root.getLinks().getApi().getHeadlines().getHref());
       System.out.println("links.api.notes=" + root.getLinks().getApi().getNotes().getHref());
@@ -42,45 +41,5 @@ public class SportsTest {
          catch (Exception ex) {}
          System.out.println();
       }
-   }
-   
-   public static String makeRequest() throws IOException {
-      final URL url = new URL(requestUrl);
-      final URLConnection connection = url.openConnection();
-
-      connection.setDoOutput(true);
-      connection.setRequestProperty("Accept-Encoding", "gzip");
-
-      final OutputStream outputStream = connection.getOutputStream();
-      final OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
-      
-      String data = "";
-      outputStreamWriter.write(data);
-      outputStreamWriter.flush();
-
-      final InputStream replyStream = connection.getInputStream();
-      final InputStreamReader inputStreamReader;
-
-      // The following is to check if the server sending the response supports
-      // Gzip
-      final String contentEncodingField = connection.getHeaderField("Content-Encoding");
-      if (contentEncodingField != null && contentEncodingField.equalsIgnoreCase("gzip")) {
-         // read the gzipped format
-         final GZIPInputStream gzipInputStream = new GZIPInputStream(replyStream);
-         inputStreamReader = new InputStreamReader(gzipInputStream);
-      } else {
-         inputStreamReader = new InputStreamReader(replyStream);
-      }
-
-      StringBuilder response = new StringBuilder();
-      final BufferedReader reader = new BufferedReader(inputStreamReader);
-      String line = null;
-      while ((line = reader.readLine()) != null) {
-         response.append(line);
-      }
-      outputStreamWriter.close();
-      reader.close();
-
-      return response.toString();
    }
 }
