@@ -18,6 +18,7 @@ import java.util.zip.GZIPInputStream;
 public abstract class API<T> {
    
    // Common API resources
+   public static final String RESOURCE_SPORTS = "/sports";
    public static final String RESOURCE_BASEBALL = "/sports/baseball";
    public static final String RESOURCE_BASEBALL_MLB = "/sports/baseball/mlb";
    public static final String RESOURCE_BASKETBALL = "/sports/basketball";
@@ -47,6 +48,8 @@ public abstract class API<T> {
    private static Properties props = null;
    private static String apiKey = null;
    private static String apiBaseUrl = null;
+   private String apiResource = null;
+   private String apiMethod = null;
    private String apiUrl = null;
    
    public API() {
@@ -54,6 +57,27 @@ public abstract class API<T> {
       
       if (props == null) {
 			init();
+      }
+   }
+   
+   public API(String resource) {
+      super();
+      
+      this.apiResource = resource;
+      
+      if (props == null) {
+         init();
+      }
+   }
+   
+   public API(String resource, String method) {
+      super();
+      
+      this.apiResource = resource;
+      this.apiMethod = method;
+      
+      if (props == null) {
+         init();
       }
    }
    
