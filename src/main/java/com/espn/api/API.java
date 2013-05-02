@@ -17,6 +17,33 @@ import java.util.zip.GZIPInputStream;
 
 public abstract class API<T> {
    
+   // Common API resources
+   public static final String RESOURCE_BASEBALL = "/sports/baseball";
+   public static final String RESOURCE_BASEBALL_MLB = "/sports/baseball/mlb";
+   public static final String RESOURCE_BASKETBALL = "/sports/basketball";
+   public static final String RESOURCE_BASKETBALL_NBA = "/sports/basketball/nba";
+   public static final String RESOURCE_BASKETBALL_WNBA = "/sports/basketball/wnba";
+   public static final String RESOURCE_BASKETBALL_NCAAB = "/sports/basketball/mens-college-basketball";
+   public static final String RESOURCE_BASKETBALL_NCAAW = "/sports/basketball/womens-college-basketball";
+   public static final String RESOURCE_FOOTBALL = "/sports/football";
+   public static final String RESOURCE_FOOTBALL_NFL = "/sports/football/nfl";
+   public static final String RESOURCE_HOCKEY = "/sports/hockey";
+   public static final String RESOURCE_HOCKEY_NHL = "/sports/hockey/nhl";
+   public static final String RESOURCE_SOCCER = "/sports/soccer";
+   public static final String RESOURCE_GOLF = "/sports/golf";
+   public static final String RESOURCE_TENNIS = "/sports/tennis";
+   public static final String RESOURCE_MMA = "/sports/mma";
+   public static final String RESOURCE_BOXING = "/sports/boxing";
+   public static final String RESOURCE_XGAMES = "/sports/action-sports";
+   public static final String RESOURCE_XGAMES_BMX = "/sports/action-sports/bmx";
+   public static final String RESOURCE_XGAMES_MOTOX = "/sports/action-sports/motox";
+   public static final String RESOURCE_XGAMES_SKATEBOARDING = "/sports/action-sports/skateboarding";
+   public static final String RESOURCE_XGAMES_SKIING = "/sports/action-sports/skiing";
+   public static final String RESOURCE_XGAMES_SNOWBOARDING = "/sports/action-sports/snowboarding";
+   public static final String RESOURCE_XGAMES_SNOWMOBILING = "/sports/action-sports/snowmobiling";
+   public static final String RESOURCE_XGAMES_SURFING = "/sports/action-sports/surfing";
+   public static final String RESOURCE_XGAMES_RALLY = "/sports/action-sports/rally";
+   
    private static Properties props = null;
    private static String apiKey = null;
    private static String apiBaseUrl = null;
