@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.lang.reflect.Field;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.InvalidPropertiesFormatException;
@@ -54,31 +55,17 @@ public abstract class API<T> {
    
    public API() {
       super();
-      
-      if (props == null) {
-			init();
-      }
    }
    
    public API(String resource) {
       super();
-      
       this.apiResource = resource;
-      
-      if (props == null) {
-         init();
-      }
    }
    
    public API(String resource, String method) {
       super();
-      
       this.apiResource = resource;
       this.apiMethod = method;
-      
-      if (props == null) {
-         init();
-      }
    }
    
    private static void init() {
@@ -105,6 +92,9 @@ public abstract class API<T> {
    }
    
    private void buildUrl() {
+      if (props == null) {
+         init();
+      }
       this.apiUrl = apiBaseUrl.concat("?apikey=").concat(apiKey);
    }
    
@@ -160,4 +150,21 @@ public abstract class API<T> {
    }
    
    public abstract T getAPIData();
+   
+   public boolean isSupportedResource(String resource) {
+      boolean isSupported = false;
+      Field[] fields = API.class.getDeclaredFields();
+      for (Field field : fields) {
+         try {
+            if (field.getName().startsWith("RESOURCE")) {
+               String value = (String)field.get(null);
+               isSupported = value.equalsIgnoreCase(resource);
+            }
+         }
+         catch (Exception e) {
+            e.printStackTrace();
+         }
+      }
+      return isSupported;
+   }
 }

@@ -11,6 +11,7 @@ import java.net.URLConnection;
 import java.util.List;
 import java.util.zip.GZIPInputStream;
 
+import com.espn.api.API;
 import com.espn.api.sports.Sport;
 import com.espn.api.sports.Sports;
 import com.espn.api.sports.SportsAPI;
@@ -18,10 +19,13 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+
 public class SportsTest {
    
    public static void main(String[] args) throws JsonSyntaxException, IOException {
-      SportsAPI sportsApi = new SportsAPI();
+      /*SportsAPI sportsApi = new SportsAPI();
       Sports root = sportsApi.getAPIData();
       
       System.out.println("links.api.news=" + root.getLinks().getApi().getNews().getHref());
@@ -40,6 +44,22 @@ public class SportsTest {
          }
          catch (Exception ex) {}
          System.out.println();
+      }*/
+      
+      magicMethod(API.class);
+   }
+   
+   public static void magicMethod(Class<?> c) {
+      Field[] fields = c.getDeclaredFields();
+      for (Field field : fields) {
+         try {
+            if (field.getName().startsWith("RESOURCE")) {
+               System.out.println(field.getName() + "=" + field.get(null));
+            }
+         }
+         catch (Exception e) {
+            e.printStackTrace();
+         }
       }
    }
 }
