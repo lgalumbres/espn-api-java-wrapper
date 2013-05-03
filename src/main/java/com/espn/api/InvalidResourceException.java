@@ -1,5 +1,8 @@
 package com.espn.api;
 
+/**
+ * An InvalidResourceException is thrown when an API resource is not supported.
+ */
 public class InvalidResourceException extends RuntimeException {
    
    public InvalidResourceException() {
