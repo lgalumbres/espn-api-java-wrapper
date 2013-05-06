@@ -25,7 +25,7 @@ public class SportsAPI extends API<Sports> {
    public SportsAPI(String resource) throws InvalidResourceException {
       super(resource);
       
-      if (!isSupportedResource(SportsAPI.class, resource)) {
+      if (!validResource && !isSupportedResource(SportsAPI.class, resource)) {
          throw new InvalidResourceException("The API resource '" + resource + "' does not exists.");
       }
    }

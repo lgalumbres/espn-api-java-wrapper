@@ -1,13 +1,18 @@
 package com.espn.api.sports;
 
+import java.util.List;
+
+import com.espn.api.leagues.League;
+
 /**
- * Sport class that represents the sport node in the ESPN APIs.
+ * Sport class that represents the sport object in the ESPN APIs.
  */
 public class Sport {
    
    private Integer id = null;
    private String name = null;
    private SportsLinks links = null;
+   private List<League> leagues = null;
    
    /**
     * Initialize a new sport.
@@ -38,5 +43,13 @@ public class Sport {
     */
    public SportsLinks getLinks() {
       return links;
+   }
+   
+   /**
+    * Gets the leagues for the sport.
+    * @return The leagues.
+    */
+   public List<League> getLeagues() {
+      return leagues;
    }
 }

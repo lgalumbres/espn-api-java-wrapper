@@ -137,6 +137,8 @@ public abstract class API<T> {
    private String apiMethod = null;
    private Map<String, String> apiParams = null;
    private String apiUrl = null;
+   protected boolean validResource = false;
+   protected boolean validMethod = false;
    
    /**
     * Initialize a new API.
@@ -150,10 +152,10 @@ public abstract class API<T> {
     * @param resource The resource.
     * @throws InvalidResourceException Thrown if the resource is invalid.
     */
-   public API(String resource) throws InvalidResourceException {
+   public API(String resource) {
       super();
-      if (!isSupportedResource(API.class, resource)) {
-         throw new InvalidResourceException("The API resource '" + resource + "' does not exists.");
+      if (isSupportedResource(API.class, resource)) {
+         this.validResource = true;
       }
       this.apiResource = resource;
    }
@@ -165,12 +167,13 @@ public abstract class API<T> {
     * @throws InvalidResourceException Thrown if the resource is invalid.
     * @throws InvalidMethodException Thrown if the method endpoint is invalid.
     */
-   public API(String resource, String method) throws InvalidResourceException, InvalidMethodException {
+   public API(String resource, String method) {
       super();
-      if (!isSupportedResource(API.class, resource)) {
-         throw new InvalidResourceException("The API resource '" + resource + "' does not exists.");
+      if (isSupportedResource(API.class, resource)) {
+         this.validResource = true;
       }
-      this.apiResource = resource;      
+      this.apiResource = resource;
+      this.validMethod = true;
       this.apiMethod = method;
    }
    
@@ -204,8 +207,8 @@ public abstract class API<T> {
          // fis = new FileInputStream(propFilePath.concat("\\src\\main\\resources\\com.espn.api.properties"));
          props.load(fis);
          
-         apiKey = props.getProperty("api.key");
-         apiBaseUrl = props.getProperty("api.base.url");
+         apiKey = "_____";//props.getProperty("api.key");
+         apiBaseUrl = "http://api.espn.com/v1"; //props.getProperty("api.base.url");
       }
       catch (FileNotFoundException e) {
          e.printStackTrace();
