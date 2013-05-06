@@ -28,7 +28,7 @@ import java.lang.reflect.Modifier;
 public class SportsTest {
    
    public static void main(String[] args) throws JsonSyntaxException, IOException {
-      SportsAPI sportsApi = new SportsAPI(SportsAPI.RESOURCE_BASKETBALL);
+      SportsAPI sportsApi = new SportsAPI(SportsAPI.RESOURCE_SOCCER);
       Sports root = sportsApi.getAPIData();
       
       if (root.getLinks() != null) {

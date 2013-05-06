@@ -154,9 +154,11 @@ public abstract class API<T> {
     */
    public API(String resource) {
       super();
+      
       if (isSupportedResource(API.class, resource)) {
          this.validResource = true;
       }
+      
       this.apiResource = resource;
    }
    
@@ -169,11 +171,16 @@ public abstract class API<T> {
     */
    public API(String resource, String method) {
       super();
+      
       if (isSupportedResource(API.class, resource)) {
          this.validResource = true;
       }
+      
+      if (isSupportedMethod(API.class, method)) {
+         this.validMethod = true;
+      }
+      
       this.apiResource = resource;
-      this.validMethod = true;
       this.apiMethod = method;
    }
    
@@ -187,9 +194,15 @@ public abstract class API<T> {
     */
    public API(String resource, String method, Map<String, String> params) throws InvalidResourceException, InvalidMethodException {
       super();
-      if (!isSupportedResource(API.class, resource)) {
-         throw new InvalidResourceException("The API resource '" + resource + "' does not exists.");
+      
+      if (isSupportedResource(API.class, resource)) {
+         this.validResource = true;
       }
+      
+      if (isSupportedMethod(API.class, method)) {
+         this.validMethod = true;
+      }
+      
       this.apiResource = resource;
       this.apiMethod = method;
       this.apiParams = params;
@@ -207,8 +220,8 @@ public abstract class API<T> {
          // fis = new FileInputStream(propFilePath.concat("\\src\\main\\resources\\com.espn.api.properties"));
          props.load(fis);
          
-         apiKey = "_____";//props.getProperty("api.key");
-         apiBaseUrl = "http://api.espn.com/v1"; //props.getProperty("api.base.url");
+         apiKey = props.getProperty("api.key");
+         apiBaseUrl = props.getProperty("api.base.url");
       }
       catch (FileNotFoundException e) {
          e.printStackTrace();
@@ -313,6 +326,32 @@ public abstract class API<T> {
             if (field.getName().startsWith("RESOURCE")) {
                String value = (String)field.get(null);
                if (value.equalsIgnoreCase(resource)) {
+                  isSupported = true;
+                  break;
+               }
+            }
+         }
+         catch (Exception e) {
+            e.printStackTrace();
+         }
+      }
+      return isSupported;
+   }
+   
+   /**
+    * Method for validating a method endpoint.
+    * @param clazz The class containing the set of methods.
+    * @param method The method to validate.
+    * @return True/False
+    */
+   protected static boolean isSupportedMethod(Class<?> clazz, String method) {
+      boolean isSupported = false;
+      Field[] fields = clazz.getDeclaredFields();
+      for (Field field : fields) {
+         try {
+            if (field.getName().startsWith("METHOD")) {
+               String value = (String)field.get(null);
+               if (value.equalsIgnoreCase(method)) {
                   isSupported = true;
                   break;
                }
