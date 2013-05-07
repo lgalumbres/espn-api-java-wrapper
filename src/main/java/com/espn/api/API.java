@@ -365,6 +365,14 @@ public abstract class API<T> {
    }
    
    /**
+    * Resets the API method endpoint to the specified parameter.
+    * @param method The method endpoint to use.
+    */
+   protected void reconfigureMethod(String method) {
+      this.apiMethod = method;
+   }
+   
+   /**
     * Method for retrieving the API data in Java representation.
     * @return The object define by T where T is parameter given.
     */

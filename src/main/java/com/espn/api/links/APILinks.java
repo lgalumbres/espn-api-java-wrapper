@@ -10,6 +10,8 @@ public class APILinks {
    private NotesLink notes = null;
    private HeadlinesLink headlines = null;
    private EventsLink events = null;
+   private VideoLink video = null;
+   private AudioLink audio = null;
    
    /**
     * Initialize a new links class.
@@ -56,5 +58,21 @@ public class APILinks {
     */
    public EventsLink getEvents() {
       return events;
-   }   
+   }
+   
+   /**
+    * Returns the video API link.
+    * @return The video API link.
+    */
+   public VideoLink getVideo() {
+      return video;
+   }
+   
+   /**
+    * Returns the audio API link.
+    * @return The audio API link.
+    */
+   public AudioLink getAudio() {
+      return audio;
+   }
 }

@@ -9,7 +9,7 @@ import com.espn.api.sports.headlines.HeadlinesAPI;
 public class HeadlinesTest {
 
    public static void main(String[] args) {
-      HeadlinesAPI headlinesAPI = new HeadlinesAPI(HeadlinesAPI.RESOURCE_BASKETBALL_NBA, HeadlinesAPI.METHOD_HEADLINES);
+      HeadlinesAPI headlinesAPI = new HeadlinesAPI(HeadlinesAPI.RESOURCE_BASKETBALL_NBA, HeadlinesAPI.METHOD_HEADLINES, 9248230);
       Headlines root = headlinesAPI.getAPIData();
       
       System.out.println("timeStamp=" + root.getTimestamp());

@@ -1,9 +1,10 @@
 package com.espn.api.links;
 
-public class MobileLink {
-
+/**
+ * MobileLink class represents the links.mobile node.
+ */
+public class MobileLink extends Link {
    public MobileLink() {
-      // TODO Auto-generated constructor stub
+      super();
    }
-
 }
