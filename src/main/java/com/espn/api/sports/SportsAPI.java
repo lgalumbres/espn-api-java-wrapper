@@ -7,6 +7,21 @@ import com.google.gson.GsonBuilder;
 
 /**
  * SportsAPI class that represents the sports ESPN API. 
+ * 
+ * <br/>
+ * <br/>
+ * <strong>Sample Usages:</strong>
+ * <pre>
+ * {@code
+ * // Default constructor makes a request to /sports endpoint.
+ * SportsAPI api = new SportsAPI();
+ * Sports apiRoot = api.getAPIData();
+ * 
+ * // The following example makes a request to /sports/basketball endpoint.
+ * SportsAPI api = new SportsAPI(HeadlinesAPI.RESOURCE_BASKETBALL);
+ * SportsAPI apiRoot = api.getAPIData();
+ * }
+ * <pre>
  */
 public class SportsAPI extends API<Sports> {
 
