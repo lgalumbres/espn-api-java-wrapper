@@ -3,7 +3,7 @@ package com.espn.api.links;
 /**
  * Base link class that all link classes extend.
  */
-public class Link {
+public abstract class Link {
    
    private String href = null;
    
