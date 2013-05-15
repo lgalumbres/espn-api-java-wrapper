@@ -19,7 +19,7 @@ import com.google.gson.GsonBuilder;
  * 
  * // The following example makes a request to /sports/basketball endpoint.
  * SportsAPI api = new SportsAPI(HeadlinesAPI.RESOURCE_BASKETBALL);
- * SportsAPI apiRoot = api.getAPIData();
+ * Sports apiRoot = api.getAPIData();
  * }
  * <pre>
  */
