@@ -1,5 +1,7 @@
 package com.espn.api.sports.teams;
 
+import com.espn.api.medias.Logos;
+
 public class Team {
 
    private Integer id = null;
@@ -8,7 +10,7 @@ public class Team {
    private String nickname = null;
    private String abbreviation = null;
    private String color = null;
-   
+   private Logos logos = null;
    
    public Team() {
       super();
