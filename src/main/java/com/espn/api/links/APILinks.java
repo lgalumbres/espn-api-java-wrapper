@@ -12,6 +12,7 @@ public class APILinks {
    private EventsLink events = null;
    private VideoLink video = null;
    private AudioLink audio = null;
+   private TeamsLink teams = null;
    
    /**
     * Initialize a new links class.
@@ -74,5 +75,13 @@ public class APILinks {
     */
    public AudioLink getAudio() {
       return audio;
+   }
+   
+   /**
+    * Returns the teams API link.
+    * @return The teams API link.
+    */
+   public TeamsLink getTeams() {
+      return teams;
    }
 }
